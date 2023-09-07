@@ -29,7 +29,8 @@ tags:
 
 Terraform est un outil d'IAC (Infrastructure As Code), son but est de déclarer une architecture, de l'instancier et de la détruire.
 
-> ⚠️ L'outil a pour but de configurer une ARCHITECTURE, pas une machine, pour ça il y a [Ansible](https://www.ansible.com/). néanmoins il est commun de coupler les deux, Ansible configurant les machines virtuelles créées par Terraform. 
+> [!info] 
+> L'outil a pour but de configurer une ARCHITECTURE, pas une machine, pour ça il y a [Ansible](https://www.ansible.com/). néanmoins il est commun de coupler les deux, Ansible configurant les machines virtuelles créées par Terraform. 
 
 Terraform est très souvent utilisé pour créer des architectures sur un [cloud provider](https://www.techtarget.com/searchitchannel/definition/cloud-service-provider-cloud-provider) tel que AWS et Google Cloud, sur [Kubernetes](https://kubernetes.io/docs/concepts/overview/), sur [Heroku](https://www.heroku.com/) et bien d'autres. Dans ce TP nous l'utiliserons avec une instance locale de [Dokku](https://dokku.com/) une alternative gratuite de Heroku et [MongoDB Atlas](https://www.mongodb.com/atlas/database).
 
@@ -148,9 +149,10 @@ resource "aws_ec2_tag" "example_tag" {
 }
 ```
 
-> 💬 Mais cela induit donc une dépendance entre les ressources n'est ce pas ?
+> [!dialogue]  Remarque
+> Mais cela induit donc une dépendance entre les ressources n'est ce pas ?
 
--- Oui, mais Terraform est assez malin pour le gérer seul! Il est rare que vous ayez à définir le méta-argument `depends-on` 😉
+Oui, mais Terraform est assez malin pour le gérer seul! Il est rare que vous ayez à définir le méta-argument `depends-on` 😉
 
 ##### "Des méta-arguments ?"
 
@@ -300,8 +302,9 @@ Hé oui! si Terraform sait quelles ressources il doit modifier et les quelles il
 
 > [!dialogue]  Remarque
 > >"Mais donc si je le supprime par pur accident, Terraform ne pourra plus savoir où il en est ! De plus si on est plusieurs dans mon équipe à faire des `apply` comment on peut garantir la cohérence entre nos states"
-> 
-> On peut répondre à ces deux problématiques avec la décentralisation du state grâce au bloc `backend`.
+
+
+On peut répondre à ces deux problématiques avec la décentralisation du state grâce au bloc `backend`.
 
 ```hcl
 terraform {
