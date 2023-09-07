@@ -15,6 +15,15 @@ tags:
 
 **Branche**: [tf-intro](https://github.com/WoodenMaiden/exercises/tree/tf-intro)
 
+> [!info]- (Optionnel) Point sur la révocation de la license FOSS: 7 Septembre 2023
+> Après 9 ans de croissance en tant qu'outil open-source, Terraform s'est vu révoquer sa license Mozilla Public License (MPL v2.0) le 10 Août 2023 pour la Business Source License (BUSL v1.1). 
+>
+> Avec ce choix brutal et sans justifications, Hashicorp (les développeurs de Terraform) mettent en danger des millions de personnes utilisant l'outil, allant du simple étudiant à la grande multinationale. À cause de cette license et des conditions vagues donnés par Hashicorp, certains projets et business s'axant autour de Terraform peuvent se retrouver devant les tribunaux.
+> 
+> Un [manifeste](https://opentf.org/) à été publié par la communauté OpenTF,  annonçant faire un fork de Terraform si Hashicorp ne revenait pas sur sa décision, comme vous pouvez le deviner Hashicorp n'ayant pas répondu à l'appel, [les menaces on été mises à exécution](https://help.obsidian.md/Editing+and+formatting/Callouts).
+>
+> En soit rien ne vous empêche d'utiliser Terraform, mais faites attention à ce que vos projets rentrent dans les conditions d'utilisation très vagues écrites par Hashicorp. Pour ce qui est d'OpenTF, les développeurs assurent que leur fork permettra d’exécuter les configurations écrites avant ce dernier, mais le projet est encore jeune et reste ouvert [aux contributions](https://github.com/opentffoundation/opentf/blob/main/CONTRIBUTING.md). Ce cours ayant été écrit juste avant le changement de license vous n'avez pas à vous en soucier.
+
 - - -
 # Présentation
 
@@ -219,11 +228,14 @@ beef = {
 }
 ```
 
-> ⚠️ Pensez à ne pas commit ce fichier, penser à l'ignorer avec un `.gitignore` par exemple
-
 On peut donc utiliser ces variables dans notre code HCL avec `var.nom_de_ma_variable`
+ 
+> [!attention]
+> Pensez à ne pas commit ce fichier, penser à l'ignorer avec un `.gitignore` par exemple
 
-> 📖 Avec la myriade d'expréssions et d'opérations disponibles sur les types, il est plus pertinent d'aller les regarder par vous même dans [la documentation à se sujet](https://developer.hashicorp.com/terraform/language/expressions) 
+> [!docs]
+> Avec la myriade d’expressions et d'opérations disponibles sur les types, il est plus pertinent d'aller les regarder par vous même dans [la documentation à se sujet](https://developer.hashicorp.com/terraform/language/expressions) 
+
 #### Les sources de données
 
 Parfois vous aurez besoin de données relatives à une ressource qui n'est disponible qu'auprès de la cible d'un provider, par exemple l'identifiant d'une organisation, les providers proposent en plus des ressources des bloc `data` qui servent justement à accéder à ce genre de données.
@@ -280,15 +292,16 @@ Comme vous avez du le deviner on peut accéder aux valeurs `output` avec `<nom_d
 
 Terraform n'a pas de moyen de vérifier l'état de l'architecture en temps réel avec les providers, quand lancez `terraform apply` un fichier `.tfstate` va être écrit et mis a jour.
 
-<mark style="background: #FF5582A6;">Ce fichier contient l'ENTIÈRETÉ de l'état actuel de l'architecture y compris toutes les variables et autres données sensibles en clair, donc par pitié ne le comittez pas.</mark>
+> [!error] DANGER
+> Ce fichier contient l'ENTIÈRETÉ de l'état actuel de l'architecture y compris toutes les variables et autres données sensibles en clair, donc par pitié tout comme le fichier de variables, ne le comittez pas.
 
 Hé oui! si Terraform sait quelles ressources il doit modifier et les quelles il doit créer/supprimer c'est en comparant la sortie du code HCL et ce qui il y a dans ce state.
 #### Problématiques
 
-> 💬 Mais donc si je le supprime par pur accident, Terraform ne pourra plus savoir où il en est ! 
-> De plus si on est plusieurs dans mon équipe à faire des `apply` comment on peut garantir la cohérence entre nos states
-
-On peut répondre à ces deux problématiques avec la décentralisation du state grâce au bloc `backend`.
+> [!dialogue]  Remarque
+> >"Mais donc si je le supprime par pur accident, Terraform ne pourra plus savoir où il en est ! De plus si on est plusieurs dans mon équipe à faire des `apply` comment on peut garantir la cohérence entre nos states"
+> 
+> On peut répondre à ces deux problématiques avec la décentralisation du state grâce au bloc `backend`.
 
 ```hcl
 terraform {
