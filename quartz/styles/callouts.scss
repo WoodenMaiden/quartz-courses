@@ -13,6 +13,18 @@
     margin-top: 0;
   }
 
+  &[data-callout="dialogue"] {
+    --color: #E6E6FF;
+    --border: #a0a0aec3;
+    --bg: #323235;
+  }
+
+  &[data-callout="docs"] {
+      --color: #80aaff;
+      --border: #5673ac96;
+      --bg: #282c35;
+  }
+
   &[data-callout="note"] {
     --color: #448aff;
     --border: #448aff44;
