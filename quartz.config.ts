@@ -3,11 +3,12 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Yann POMIE's IT & DevOps courses",
+    pageTitle: "Yann POMIE's IT and DevOps courses",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "umami",
+      websiteId: "63eb03e7-8a28-4390-b284-b1205781018f"
     },
     baseUrl: "courses.yann-pomie.fr",
     ignorePatterns: ["private", "templates", ".obsidian"],
