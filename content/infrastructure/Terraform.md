@@ -3,17 +3,19 @@ title: Introduction à Terraform
 enableToc: true
 openToc: true
 tags:
-  - terraform 
-  - devops 
-  - cloud 
+  - terraform
+  - devops
+  - cloud
   - architecture
+  - IaC
+aliases:
+  - openTF
+  - IaC
 ---
 **Outils/Compétences**
 
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) 
 
-
-**Branche**: [tf-intro](https://github.com/WoodenMaiden/exercises/tree/tf-intro)
 
 > [!info]- (Optionnel) Point sur la révocation de la license FOSS: 7 Septembre 2023
 > Après 9 ans de croissance en tant qu'outil open-source, Terraform s'est vu révoquer sa license Mozilla Public License (MPL v2.0) le 10 Août 2023 pour la Business Source License (BUSL v1.1). 
