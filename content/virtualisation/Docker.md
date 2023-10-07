@@ -86,14 +86,31 @@ Les 6 namespaces les plus courants:
 - **PID** isole les processus
 - **Network** isole les interfaces réseau, les tables de routage etc.
 - **User** sépare lels utilisateurs du système
-- **UTS (UNIX Tims-Sharing)** permet d'avoir des hostname et des noms de domaines séparés 
+- **UTS (UNIX Time-Sharing)** permet d'avoir des hostname et des noms de domaines séparés 
 - **IPC** isole les mécanismes de communication inter-processus tels que les files de messages et les sémaphores
-- **Mount** Il isole les points de montage du système de fichiers pour avoir des systèmes de fichiers séparés
+- **Mount** isole les points de montage du système de fichiers pour avoir des systèmes de fichiers séparés
 
 C'est avec ce mécanisme que les conteneurs peuvent s'isoler du reste du système. 
 
 > [!info]
 > C'est pour ça que l'on se penche uniquement sur Linux, car les namespaces ne sont pas disponible sous MacOS et Windows, ces derniers ne lancent pas des conteneurs mais des machines virtuelles.
+
+
+### Les différences entre les conteneurs et les machines virtuelles
+
+Il existe concrètement 2 différences entre conteneurs et machines virtuelles 
+
+#### La nature de ce qui est émulé
+   
+#### Le niveau d'isolation
+   
+   Quand vous exécutez une machine virtuelle, la machine émulée est contrôlée par un hyperviseur, ce dernier va se charger d'exécuter chaque instruction de la machine émulée, de limiter l'accès à la mémoire RAM de votre machine physique, de gérer les instructions dites privilégiées etc. Autrement dit l'hyperviseur supporte les machines et les isole de la machine hôte en faisant tampon. 
+   ![](https://lh3.googleusercontent.com/ECBRHeUiHBwMPv7q2Cl_zjb9IvpyOK2_CsLE34KI8_T6sMyrcg4I3bm87tQnlqnhDnb-b5XZAWVxdykoXAwl_m_lJoVC8JL5qA5Eg_mMKTfdIOXUWuBPRWv2pf9UAphQb7YJ-mNBZt9bcLoEx4iH19TYLw=nw)
+   
+   Les conteneurs eux n'étant pas des OS, mais des processus, ils sont plus faiblement isolés, notamment grâce aux namespaces Linux vu ci dessus. C'est la raison pour laquelle les conteneurs n'ont pas besoin de système d'exploitation car ils exploitent la `libc` de l'hôte, cependant il est donc plus facile de sortir du conteneur et donc accéder à l'OS de l'hôte.
+
+### Machine virtuelle ou conteneur? 
+
 
 
 # Docker en lui même
